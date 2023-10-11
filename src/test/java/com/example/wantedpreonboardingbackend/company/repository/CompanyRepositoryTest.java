@@ -1,6 +1,7 @@
 package com.example.wantedpreonboardingbackend.company.repository;
 
 import com.example.wantedpreonboardingbackend.company.domain.Company;
+import com.example.wantedpreonboardingbackend.company.dto.CompanyDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,13 @@ public class CompanyRepositoryTest {
 
     @Test
     @DisplayName("회사 저장")
-    public void saveCompanyAndFindById() {
+    public void saveCompany() {
         // Given
         String companyName = "테스트 회사";
         int companyNumber = 123;
-        Company company = new Company(companyName, companyNumber);
+        Company company = Company.builder()
+                .name(companyName).number(companyNumber)
+                .build();
 
         // When
         Company savedCompany = companyRepository.save(company);

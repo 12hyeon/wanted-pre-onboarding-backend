@@ -4,7 +4,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/jobposting?profileSQL=true&logger=Slf4JLogger&maxQuerySizeToLog=999999
     username: root
-    password: PASSWORD
+    password: 1212
 
   jpa:
     properties:

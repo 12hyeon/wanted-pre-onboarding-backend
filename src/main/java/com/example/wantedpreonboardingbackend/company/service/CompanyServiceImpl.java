@@ -18,7 +18,10 @@ public class CompanyServiceImpl implements CompanyService {
         return companyRepository.findByNumber(number)
                 .map(existingCompany -> new CompanyDto.CompanyResponse(ExceptionCode.DUPLICATE_COMPANY_NUMBER, existingCompany))
                 .orElseGet(() -> {
-                    Company savedCompany = companyRepository.save(new Company(name, number));
+                    Company savedCompany = companyRepository.save(Company.builder()
+                            .number(number)
+                            .name(name)
+                            .build());
                     return new CompanyDto.CompanyResponse(ExceptionCode.SAVE_COMPANY_OK, savedCompany);
                 });
     }
