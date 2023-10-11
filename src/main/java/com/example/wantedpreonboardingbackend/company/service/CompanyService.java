@@ -1,6 +1,8 @@
 package com.example.wantedpreonboardingbackend.company.service;
 
+import com.example.wantedpreonboardingbackend.company.dto.CompanyDto;
+
 public interface CompanyService {
 
-    Object saveCompany(String name, long number);
+    CompanyDto.CompanyResponse saveCompany(String name, int number);
 }

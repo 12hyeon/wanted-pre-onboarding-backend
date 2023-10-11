@@ -19,9 +19,9 @@ public class Company extends BaseEntity {
     private String name;
 
     @NotNull
-    private long number;
+    private int number;
 
-    public Company(String name, long number) {
+    public Company(String name, int number) {
         this.name = name;
         this.number = number;
     }

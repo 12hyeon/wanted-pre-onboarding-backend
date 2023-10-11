@@ -1,6 +1,6 @@
 package com.example.wantedpreonboardingbackend.company.controller;
 
-import com.example.wantedpreonboardingbackend.company.response.CompanyResponse;
+import com.example.wantedpreonboardingbackend.company.dto.CompanyDto;
 import com.example.wantedpreonboardingbackend.company.service.CompanyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -22,13 +22,13 @@ public class CompanyController {
     @Operation(summary = "회사 등록 요청", description = "회사 정보가 추가됩니다.", tags = { "Company Controller" })
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK",
-                    content = @Content(schema = @Schema(implementation = CompanyResponse.class))),
+                    content = @Content(schema = @Schema(implementation = CompanyDto.class))),
             @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
             @ApiResponse(responseCode = "404", description = "NOT FOUND"),
             @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR")
     })
     @PostMapping("v1/companies")
-    public Object saveCompany(@RequestParam String name, @RequestParam long number) {
-        return new ResponseEntity<>(companyService.saveCompany(name, number), HttpStatus.OK);
+    public ResponseEntity<CompanyDto.CompanyResponse> saveCompany(@RequestParam String name, @RequestParam int number) {
+        return ResponseEntity.ok(companyService.saveCompany(name, number));
     }
 }
