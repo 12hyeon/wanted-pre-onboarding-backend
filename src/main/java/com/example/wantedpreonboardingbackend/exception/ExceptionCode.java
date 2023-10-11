@@ -2,14 +2,17 @@ package com.example.wantedpreonboardingbackend.exception;
 
 import lombok.Getter;
 
-import static com.example.wantedpreonboardingbackend.exception.HttpStatus.CREATED;
-import static com.example.wantedpreonboardingbackend.exception.HttpStatus.DUPLICATED_VALUE;
+import static com.example.wantedpreonboardingbackend.exception.HttpStatus.*;
 
 @Getter
 public enum ExceptionCode {
 
-    SAVE_COMPANY_OK(CREATED, "C001", "회사 저장 성공"),
-    DUPLICATE_COMPANY_NUMBER(DUPLICATED_VALUE, "C002", "이미 저장된 회사");
+    DUPLICATE_COMPANY_NUMBER(DUPLICATED_VALUE, "C001", "이미 등록된 회사"),
+    NOT_FOUND_COMPANY_NUMBER(NOT_FOUND_VALUE, "C002", "등록되지 않은 회사"),
+
+    SAVE_COMPANY_OK(CREATED, "C101", "회사 등록 성공"),
+
+    SAVE_POSTING_OK(CREATED, "P101", "채용공고 등록 성공");
 
     private final HttpStatus status;
     private final String code;
