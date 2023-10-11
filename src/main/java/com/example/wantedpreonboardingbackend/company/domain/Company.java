@@ -28,6 +28,9 @@ public class Company extends BaseEntity {
     @NotBlank
     private String name;
 
+    @OneToMany
+    List<Posting> postings = new ArrayList<>();
+
     @Builder
     public Company(String name, int number) {
         this.name = name;

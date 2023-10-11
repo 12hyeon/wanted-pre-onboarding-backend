@@ -51,4 +51,16 @@ public class Posting extends BaseEntity {
         this.endDate = request.getEndDate();
         this.company = company;
     }
+
+    // 연관관계 메서드
+
+    public void addPosting(Company company) {
+        this.company = company;
+        company.getPostings().add(this);
+    }
+
+    public void removePosting() {
+        company.getPostings().remove(this);
+    }
+
 }
