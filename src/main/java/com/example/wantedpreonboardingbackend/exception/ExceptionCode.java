@@ -17,7 +17,8 @@ public enum ExceptionCode {
     NOT_FOUND_POSTING(NOT_FOUND, "P001", "등록되지 않은 채용공고"),
 
     SAVE_POSTING_OK(CREATED, "P101", "채용공고 등록 성공"),
-    UPDATE_POSTING_OK(OK, "P102", "채용공고 수정 성공");
+    UPDATE_POSTING_OK(OK, "P102", "채용공고 수정 성공"),
+    DELETE_POSTING_OK(OK, "P103", "채용공고 삭제 성공");
 
     private final int status;
     private final String code;

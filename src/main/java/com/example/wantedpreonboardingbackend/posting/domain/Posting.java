@@ -1,12 +1,9 @@
 package com.example.wantedpreonboardingbackend.posting.domain;
 
 import com.example.wantedpreonboardingbackend.company.domain.Company;
-import com.example.wantedpreonboardingbackend.posting.domain.Posting;
 import com.example.wantedpreonboardingbackend.config.BaseEntity;
 import com.example.wantedpreonboardingbackend.posting.dto.PostingDto;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

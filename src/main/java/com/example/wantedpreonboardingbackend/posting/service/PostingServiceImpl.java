@@ -42,4 +42,16 @@ public class PostingServiceImpl implements PostingService {
 
         return new BaseResponse<>(ExceptionCode.UPDATE_POSTING_OK, new PostingDto.PostingResponse(posting));
     }
+
+    @Override
+    @Transactional
+    public BaseResponse<Void> deletePosting(Long postingId) {
+        Posting posting = postingRepository.findById(postingId)
+                .orElseThrow(() -> new CustomException(ExceptionCode.NOT_FOUND_POSTING));
+
+        posting.removePosting();
+        postingRepository.deleteById(postingId);
+
+        return new BaseResponse<>(ExceptionCode.DELETE_POSTING_OK);
+    }
 }

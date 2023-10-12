@@ -13,5 +13,6 @@ public interface PostingRepository extends JpaRepository<Posting, Long> {
     Posting save(Posting posting);
     Optional<Posting> findById(Long id);
     //List<Posting> findByCompanyId(Long companyId);
+    void deleteById(Long id);
 
 }

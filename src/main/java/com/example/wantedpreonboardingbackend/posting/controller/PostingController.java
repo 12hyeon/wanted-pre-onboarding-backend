@@ -33,4 +33,12 @@ public class PostingController {
         BaseResponse<PostingDto.PostingResponse> response = postingService.updatePosting(postingId, request);
         return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
     }
+
+    @Operation(summary = "채용공고 삭제", description = "채용공고를 삭제합니다.", tags = {"Posting Controller"})
+    @CustomApiResponse.DeleteApiResponse
+    @DeleteMapping("/posting")
+    public ResponseEntity<Object> deletePosting(@RequestParam Long postingId) {
+        BaseResponse<Void> response = postingService.deletePosting(postingId);
+        return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
+    }
 }
