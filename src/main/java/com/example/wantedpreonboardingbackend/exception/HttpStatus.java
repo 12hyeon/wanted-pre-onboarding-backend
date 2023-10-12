@@ -4,13 +4,13 @@ import lombok.Getter;
 
 @Getter
 public enum HttpStatus {
-    SUCCESS(200),
+    OK(200),
     CREATED(201),
     INVALID_ACCESS(403),
-    NOT_FOUND_VALUE(404),
+    NOT_FOUND(404),
     DUPLICATED_VALUE(409);
 
-    private int value;
+    private final int value;
 
     HttpStatus(int value) {
         this.value = value;

@@ -21,5 +21,4 @@ public class BaseResponse extends ResponseType {
         super(code);
         this.result = result;
     }
-
 }

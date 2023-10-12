@@ -1,8 +1,6 @@
 package com.example.wantedpreonboardingbackend.company.dto;
 
 import com.example.wantedpreonboardingbackend.company.domain.Company;
-import com.example.wantedpreonboardingbackend.config.ResponseType;
-import com.example.wantedpreonboardingbackend.exception.ExceptionCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,13 +14,12 @@ public class CompanyDto {
     }
 
     @Getter
-    public static class CompanyResponse extends ResponseType {
+    public static class CompanyResponse {
         private Long companyId;
         private String name;
         private int number;
 
-        public CompanyResponse(ExceptionCode code, Company company) {
-            super(code);
+        public CompanyResponse(Company company) {
             companyId = company.getId();
             name = company.getName();
             number = company.getNumber();

@@ -1,5 +1,6 @@
 package com.example.wantedpreonboardingbackend.company.service;
 
+import com.example.wantedpreonboardingbackend.common.BaseResponse;
 import com.example.wantedpreonboardingbackend.company.domain.Company;
 import com.example.wantedpreonboardingbackend.company.dto.CompanyDto;
 import com.example.wantedpreonboardingbackend.company.repository.CompanyRepository;
@@ -35,7 +36,7 @@ public class CompanyServiceImplTest {
         Mockito.when(companyRepository.save(Mockito.any(Company.class))).thenReturn(new Company("New Company", companyNumber));
 
         // When
-        CompanyDto.CompanyResponse response = companyService.saveCompany("New Company", companyNumber);
+        BaseResponse response = companyService.saveCompany("New Company", companyNumber);
 
         // Then
         assertEquals(ExceptionCode.SAVE_COMPANY_OK.getCode(), response.getCode());
@@ -50,7 +51,7 @@ public class CompanyServiceImplTest {
         Mockito.when(companyRepository.findByNumber(companyNumber)).thenReturn(Optional.of(existingCompany));
 
         // When
-        CompanyDto.CompanyResponse response = companyService.saveCompany("New Company", companyNumber);
+        BaseResponse response = companyService.saveCompany("New Company", companyNumber);
 
         // Then
         assertEquals(ExceptionCode.DUPLICATE_COMPANY_NUMBER.getCode(), response.getCode());
