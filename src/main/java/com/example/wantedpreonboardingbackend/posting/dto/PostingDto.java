@@ -12,6 +12,8 @@ public class PostingDto {
     @Setter
     @NoArgsConstructor
     public static class PostingElementRequest {
+        @NotBlank
+        private String position;
         private String technology;
         private String description;
         private int reward;
@@ -25,8 +27,6 @@ public class PostingDto {
 
         @NotBlank
         private String title;
-        @NotBlank
-        private String position;
     }
 
     @Getter

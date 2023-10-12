@@ -96,16 +96,15 @@ public class PostingServiceImplTest {
         Company company = new Company("existing Company", 123);
         PostingDto.PostingRequest request = new PostingDto.PostingRequest();
         request.setTitle("XX기업 인턴 모집");
-        request.setPosition("백엔드 개발자");
 
         Posting existingPosting = new Posting(request, company);
         Mockito.when(postingRepository.findById(postingId)).thenReturn(Optional.of(existingPosting));
 
         PostingDto.PostingElementRequest request2 = new PostingDto.PostingRequest();
+        request.setPosition("백엔드 개발자");
         request2.setTechnology("Java");
-        request2.setDescription(null);
+        request2.setDescription("");
         request2.setReward(3000);
-        request2.setEndDate(LocalDateTime.now().plusDays(7));
 
         // When
         BaseResponse<PostingDto.PostingResponse> response = postingService.updatePosting(postingId, request2);
@@ -116,6 +115,7 @@ public class PostingServiceImplTest {
         assertEquals(existingPosting.getId(), response.getResult().getPostingId());
         assertEquals(existingPosting.getTechnology(), response.getResult().getTechnology());
         assertEquals(existingPosting.getDescription(), response.getResult().getDescription());
+        assertNotNull(response.getResult().getEndDate());
     }
 }
 

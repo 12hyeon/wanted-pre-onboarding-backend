@@ -45,7 +45,7 @@ public class Posting extends BaseEntity {
         this.technology = request.getTechnology();
         this.description = request.getDescription();
         this.reward = request.getReward();
-        this.endDate = request.getEndDate();
+        this.endDate = (request.getEndDate() != null) ? request.getEndDate() : LocalDateTime.now().plusDays(7);
         this.company = company;
     }
 
@@ -61,9 +61,10 @@ public class Posting extends BaseEntity {
     }
 
     public void update(PostingDto.PostingElementRequest request) {
+        this.position = request.getPosition();
         this.technology = request.getTechnology();
         this.description = request.getDescription();
         this.reward = request.getReward();
-        this.endDate = request.getEndDate();
+        this.endDate = (request.getEndDate() != null) ? request.getEndDate() : LocalDateTime.now().plusDays(7);
     }
 }
