@@ -1,9 +1,9 @@
 package com.example.wantedpreonboardingbackend.posting.service;
 
-import com.example.wantedpreonboardingbackend.common.BaseResponse;
+import com.example.wantedpreonboardingbackend.exception.CustomException;
+import com.example.wantedpreonboardingbackend.response.BaseResponse;
 import com.example.wantedpreonboardingbackend.company.domain.Company;
 import com.example.wantedpreonboardingbackend.company.repository.CompanyRepository;
-import com.example.wantedpreonboardingbackend.exception.CustomException;
 import com.example.wantedpreonboardingbackend.posting.domain.Posting;
 import com.example.wantedpreonboardingbackend.posting.dto.PostingDto;
 import com.example.wantedpreonboardingbackend.posting.repository.PostingRepository;

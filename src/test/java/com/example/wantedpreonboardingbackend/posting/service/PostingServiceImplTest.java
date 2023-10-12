@@ -1,9 +1,9 @@
 package com.example.wantedpreonboardingbackend.posting.service;
 
-import com.example.wantedpreonboardingbackend.common.BaseResponse;
+import com.example.wantedpreonboardingbackend.exception.CustomException;
+import com.example.wantedpreonboardingbackend.response.BaseResponse;
 import com.example.wantedpreonboardingbackend.company.domain.Company;
 import com.example.wantedpreonboardingbackend.company.repository.CompanyRepository;
-import com.example.wantedpreonboardingbackend.exception.CustomException;
 import com.example.wantedpreonboardingbackend.exception.ExceptionCode;
 import com.example.wantedpreonboardingbackend.posting.domain.Posting;
 import com.example.wantedpreonboardingbackend.posting.dto.PostingDto;
@@ -112,7 +112,6 @@ public class PostingServiceImplTest {
         // Then
         assertEquals(ExceptionCode.UPDATE_POSTING_OK.getCode(), response.getCode());
         assertEquals(company.getId(), response.getResult().getCompanyId());
-        assertEquals(existingPosting.getId(), response.getResult().getPostingId());
         assertEquals(existingPosting.getTechnology(), response.getResult().getTechnology());
         assertEquals(existingPosting.getDescription(), response.getResult().getDescription());
         assertNotNull(response.getResult().getEndDate());

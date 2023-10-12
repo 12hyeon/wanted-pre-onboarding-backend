@@ -1,6 +1,6 @@
 package com.example.wantedpreonboardingbackend.posting.service;
 
-import com.example.wantedpreonboardingbackend.common.BaseResponse;
+import com.example.wantedpreonboardingbackend.response.BaseResponse;
 import com.example.wantedpreonboardingbackend.posting.dto.PostingDto;
 
 public interface PostingService {

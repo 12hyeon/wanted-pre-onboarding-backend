@@ -1,10 +1,10 @@
 package com.example.wantedpreonboardingbackend.company.service;
 
-import com.example.wantedpreonboardingbackend.common.BaseResponse;
+import com.example.wantedpreonboardingbackend.exception.CustomException;
+import com.example.wantedpreonboardingbackend.response.BaseResponse;
 import com.example.wantedpreonboardingbackend.company.domain.Company;
 import com.example.wantedpreonboardingbackend.company.dto.CompanyDto;
 import com.example.wantedpreonboardingbackend.company.repository.CompanyRepository;
-import com.example.wantedpreonboardingbackend.exception.CustomException;
 import com.example.wantedpreonboardingbackend.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

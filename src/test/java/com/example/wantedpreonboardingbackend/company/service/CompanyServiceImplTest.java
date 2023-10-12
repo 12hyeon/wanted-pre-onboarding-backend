@@ -1,10 +1,10 @@
 package com.example.wantedpreonboardingbackend.company.service;
 
-import com.example.wantedpreonboardingbackend.common.BaseResponse;
+import com.example.wantedpreonboardingbackend.exception.CustomException;
+import com.example.wantedpreonboardingbackend.response.BaseResponse;
 import com.example.wantedpreonboardingbackend.company.domain.Company;
 import com.example.wantedpreonboardingbackend.company.dto.CompanyDto;
 import com.example.wantedpreonboardingbackend.company.repository.CompanyRepository;
-import com.example.wantedpreonboardingbackend.exception.CustomException;
 import com.example.wantedpreonboardingbackend.exception.ExceptionCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -48,7 +48,8 @@ public class CompanyServiceImplTest {
     public void testSaveCompany2() {
         // Given
         int companyNumber = 456;
-        Company newCompany = new Company("Existing Company", companyNumber);
+        String companyName = "New Company";
+        Company newCompany = new Company(companyName, companyNumber);
         Mockito.when(companyRepository.findByNumber(companyNumber)).thenReturn(Optional.empty());
         Mockito.when(companyRepository.save(Mockito.any(Company.class))).thenReturn(newCompany); // company - id 설정
 
@@ -57,6 +58,7 @@ public class CompanyServiceImplTest {
 
         // Then
         assertEquals(ExceptionCode.SAVE_COMPANY_OK.getCode(), response.getCode());
-        assertNotNull(response.getResult().getCompanyId());
+        assertEquals(companyName, response.getResult().getName());
+        assertEquals(companyNumber, response.getResult().getNumber());
     }
 }

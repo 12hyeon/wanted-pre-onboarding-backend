@@ -1,4 +1,4 @@
-package com.example.wantedpreonboardingbackend.common;
+package com.example.wantedpreonboardingbackend.response;
 
 import com.example.wantedpreonboardingbackend.config.ResponseType;
 import com.example.wantedpreonboardingbackend.exception.ExceptionCode;
