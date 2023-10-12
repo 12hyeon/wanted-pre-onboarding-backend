@@ -5,5 +5,6 @@ import com.example.wantedpreonboardingbackend.posting.dto.PostingDto;
 
 public interface PostingService {
 
-    BaseResponse savePosting(PostingDto.PostingRequest request);
+    BaseResponse<PostingDto.PostingResponse> savePosting(Long companyId, PostingDto.PostingRequest request);
+    BaseResponse<PostingDto.PostingResponse> updatePosting(Long postingId, PostingDto.PostingElementRequest request);
 }

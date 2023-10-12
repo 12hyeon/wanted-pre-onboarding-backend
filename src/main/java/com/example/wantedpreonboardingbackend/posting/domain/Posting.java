@@ -30,14 +30,12 @@ public class Posting extends BaseEntity {
     private String description;
 
     @ColumnDefault("0")
-    @Positive
     private int reward;
 
-    private LocalDateTime startDate;
     private LocalDateTime endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "posting_id")
+    @JoinColumn(name = "company_id")
     private Company company;
 
     @Builder
@@ -47,7 +45,6 @@ public class Posting extends BaseEntity {
         this.technology = request.getTechnology();
         this.description = request.getDescription();
         this.reward = request.getReward();
-        this.startDate = request.getStartDate();
         this.endDate = request.getEndDate();
         this.company = company;
     }
@@ -63,4 +60,10 @@ public class Posting extends BaseEntity {
         company.getPostings().remove(this);
     }
 
+    public void update(PostingDto.PostingElementRequest request) {
+        this.technology = request.getTechnology();
+        this.description = request.getDescription();
+        this.reward = request.getReward();
+        this.endDate = request.getEndDate();
+    }
 }
