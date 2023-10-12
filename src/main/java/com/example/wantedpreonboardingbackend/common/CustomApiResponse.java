@@ -1,6 +1,6 @@
 package com.example.wantedpreonboardingbackend.common;
 
-import com.example.wantedpreonboardingbackend.config.ResponseType;
+import com.example.wantedpreonboardingbackend.exception.CustomException;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -17,9 +17,9 @@ public @interface CustomApiResponse {
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.METHOD)
     @ApiResponses({
-            @ApiResponse(responseCode = "201", description = "CREATED", content = @Content(schema = @Schema(implementation = ResponseType.class))),
-            @ApiResponse(responseCode = "404", description = "NOT_FOUND", content = @Content(schema = @Schema(implementation = ResponseType.class))),
-            @ApiResponse(responseCode = "409", description = "DUPLICATED_VALUE", content = @Content(schema = @Schema(implementation = ResponseType.class)))
+            @ApiResponse(responseCode = "201", description = "CREATED", content = @Content(schema = @Schema(implementation = BaseResponse.class))),
+            @ApiResponse(responseCode = "404", description = "NOT_FOUND", content = @Content(schema = @Schema(implementation = CustomException.class))),
+            @ApiResponse(responseCode = "409", description = "DUPLICATED_VALUE", content = @Content(schema = @Schema(implementation = CustomException.class)))
     })
     @interface SaveApiResponse {}
 
@@ -27,8 +27,8 @@ public @interface CustomApiResponse {
     @Target(ElementType.METHOD)
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = BaseResponse.class))),
-            @ApiResponse(responseCode = "404", description = "NOT_FOUND", content = @Content(schema = @Schema(implementation = ResponseType.class))),
-            @ApiResponse(responseCode = "409", description = "DUPLICATED_VALUE", content = @Content(schema = @Schema(implementation = ResponseType.class)))
+            @ApiResponse(responseCode = "404", description = "NOT_FOUND", content = @Content(schema = @Schema(implementation = CustomException.class))),
+            @ApiResponse(responseCode = "409", description = "DUPLICATED_VALUE", content = @Content(schema = @Schema(implementation = CustomException.class)))
     })
     @interface BaseApiResponse {}
 }

@@ -4,9 +4,11 @@ import com.example.wantedpreonboardingbackend.common.BaseResponse;
 import com.example.wantedpreonboardingbackend.company.domain.Company;
 import com.example.wantedpreonboardingbackend.company.dto.CompanyDto;
 import com.example.wantedpreonboardingbackend.company.repository.CompanyRepository;
+import com.example.wantedpreonboardingbackend.exception.CustomException;
 import com.example.wantedpreonboardingbackend.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -17,12 +19,12 @@ public class CompanyServiceImpl implements CompanyService {
     private final CompanyRepository companyRepository;
 
     @Override
-    public BaseResponse saveCompany(String name, int number) {
+    @Transactional
+    public BaseResponse<CompanyDto.CompanyResponse> saveCompany(String name, int number) {
         Optional<Company> existingCompany = companyRepository.findByNumber(number);
 
         if (existingCompany.isPresent()) {
-            Company duplicateCompany = existingCompany.get();
-            return createDuplicateCompanyResponse(duplicateCompany);
+            throw new CustomException(ExceptionCode.DUPLICATE_COMPANY_NUMBER);
         }
 
         Company newCompany = Company.builder()
@@ -31,20 +33,9 @@ public class CompanyServiceImpl implements CompanyService {
                 .build();
 
         Company savedCompany = companyRepository.save(newCompany);
-        return createSaveCompanyResponse(savedCompany);
-    }
-
-    private BaseResponse createDuplicateCompanyResponse(Company company) {
-        return new BaseResponse(
-                ExceptionCode.DUPLICATE_COMPANY_NUMBER,
-                new CompanyDto.CompanyResponse(company)
-        );
-    }
-
-    private BaseResponse createSaveCompanyResponse(Company company) {
-        return new BaseResponse(
+        return new BaseResponse<>(
                 ExceptionCode.SAVE_COMPANY_OK,
-                new CompanyDto.CompanyResponse(company)
+                new CompanyDto.CompanyResponse(savedCompany)
         );
     }
 }

@@ -8,16 +8,16 @@ import lombok.Getter;
 
 @Getter
 @JsonPropertyOrder({"code", "message", "result"})
-public class BaseResponse extends ResponseType {
+public class BaseResponse<T> extends ResponseType {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Object result;
+    private T result;
 
     public BaseResponse(ExceptionCode code) {
         super(code);
     }
 
-    public BaseResponse(ExceptionCode code, Object result) {
+    public BaseResponse(ExceptionCode code, T result) {
         super(code);
         this.result = result;
     }

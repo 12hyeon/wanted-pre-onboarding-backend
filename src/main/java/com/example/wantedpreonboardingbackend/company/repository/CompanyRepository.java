@@ -12,5 +12,5 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     Company save(Company company);
     Optional<Company> findById(Long id);
     Optional<Company> findByNumber(int number);
-    Boolean existsByNumber(int number);
+    boolean existsById(Long id);
 }
