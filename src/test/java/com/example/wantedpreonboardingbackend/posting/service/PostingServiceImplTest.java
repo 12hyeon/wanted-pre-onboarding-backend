@@ -36,7 +36,7 @@ public class PostingServiceImplTest {
 
     @Test
     @DisplayName("등록o 사업자등록번호 - 채용공고 저장")
-    public void savePosting() {
+    public void testSavePosting() {
 
         // Given
         Long companyId = 1L;
@@ -70,7 +70,7 @@ public class PostingServiceImplTest {
 
     @Test
     @DisplayName("등록x 사업자등록번호 - 채용공고 저장")
-    public void savePosting2() {
+    public void testSavePosting2() {
 
         // Given
         Long companyId = 1L;
@@ -88,8 +88,8 @@ public class PostingServiceImplTest {
     }
 
     @Test
-    @DisplayName("등록o 사업자등록번호 - 채용공고 수정")
-    public void testSaveCompany() {
+    @DisplayName("등록o 공고 - 채용공고 수정")
+    public void testUpdatePosting() {
 
         // Given
         Long postingId = 1L;
@@ -115,6 +115,27 @@ public class PostingServiceImplTest {
         assertEquals(existingPosting.getTechnology(), response.getResult().getTechnology());
         assertEquals(existingPosting.getDescription(), response.getResult().getDescription());
         assertNotNull(response.getResult().getEndDate());
+    }
+
+    @Test
+    @DisplayName("등록o 공고 - 채용공고 삭제")
+    public void testDeletePosting() {
+
+        // Given
+        Company company = new Company("existing Company", 123);
+
+        Long postingId = 1L;
+        PostingDto.PostingRequest request = new PostingDto.PostingRequest();
+        request.setTitle("XX기업 인턴 모집");
+
+        Posting existingPosting = new Posting(request, company);
+        Mockito.when(postingRepository.findById(postingId)).thenReturn(Optional.of(existingPosting));
+
+        // When
+        BaseResponse<Void> response = postingService.deletePosting(postingId);
+
+        // Then
+        assertEquals(ExceptionCode.DELETE_POSTING_OK.getCode(), response.getCode());
     }
 }
 
